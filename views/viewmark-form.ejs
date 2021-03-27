@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mark Entry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <style>
+    .tableform {
+			width: 900px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+    .tableform h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+    
+    .row.content {height: 550px}
+    
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 118%;
+    }
+        
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="#">Mark Entry</a></li>
+        <li><a href="#">View Marks</a></li>
+        <li><a href="#">Search</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+        <ul class="nav nav-pills nav-stacked"><br><br>
+        <li><a href="/dashboard">Student Mark Entry</a></li>
+        <li><a href="/viewmark">View Marks</a></li>
+      </ul><br>
+    </div>
+    <br>
+    
+    <div class="col-sm-9">
+        <div class="tableform">    
+            <h1>View Students Marks</h1>     
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width:5%">Id</th>
+                  <th style="width:10%">Name</th>
+                  <th style="width:10%">Roll No</th>
+                  <th style="width:10%">Mark 1</th>
+                  <th style="width:10%">Mark 2</th>
+                  <th style="width:10%">Mark 3</th>
+                  <th style="width:10%">Edit</th>
+                  <th style="width:10%">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                if(userData.length!=0){
+                var i=1;
+                userData.forEach(function(data){
+                %>
+            <tr>
+                <td><%=i; %></td>
+                <td><%=data.sname %></td>
+                <td><%=data.rollno %></td>
+                <td><%=data.mark1 %></td>
+                <td><%=data.mark2 %></td>
+                <td><%=data.mark3 %></td>
+                <td><a href="/editmark/<%=data.id%>"><i class="fas fa-edit"></i></a></td>
+                <td><a href="/delete/<%=data.id%>"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+            <%  i++; }) %>
+            <% } else{ %>
+                <tr>
+                  <td colspan="7">No Data Found</td>
+                </tr>
+            <% } %>
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

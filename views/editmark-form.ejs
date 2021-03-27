@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit Mark Entry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 118%;
+    }
+
+    .edit-form {
+			width: 700px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.edit-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		.edit-form input[type="password"],
+		.edit-form input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #dddddd;
+			margin-bottom: 10px;
+			box-sizing:border-box;
+		}
+		.edit-form button {
+			width: 100%;
+			padding: 15px;
+			background-color: #142d46;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="#">Mark Entry</a></li>
+        <li><a href="#">View Marks</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+
+      <ul class="nav nav-pills nav-stacked"><br><br>
+        <li><a href="/dashboard">Student Mark Entry</a></li>
+        <li><a href="/viewmark">View Marks</a></li>
+      </ul><br>
+    </div>
+    <br>
+    
+    <div class="col-sm-9">
+        <div class="edit-form">
+			<h1>Edit Students Mark Entry</h1>
+            <% if (userData) { %>
+			<form action="/display" method="POST">
+                <label for="sname">Name</label>
+				        <input type="text" name="sname" placeholder="Name"  value="<%= userData.sname %>" required>
+                <input type="hidden" name="id" value="<%=userData.id%>">
+                <label for="sroll">Roll No</label>
+                <input type="text" name="roll" placeholder="Roll Number" value="<%= userData.rollno %>" required>
+                <label for="sroll">Mark 1</label>
+                <input type="text" name="m1" placeholder="Enter the marks" value="<%= userData.mark1 %>" required>
+                <label for="sroll">Mark 2</label>
+                <input type="text" name="m2" placeholder="Enter the marks" value="<%= userData.mark2 %>" required>
+                <label for="sroll">Mark 3</label>
+                <input type="text" name="m3" placeholder="Enter the marks" value="<%= userData.mark3 %>" required>
+				<button type="submit">Edit</button>
+			</form>
+            <% } else { %>
+                <p class="text-center">No data found...</p>
+            <% } %>
+		</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
